@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<h1>{{ concept.title }}</h1>
+
+<p>{{ concept.description }}</p>
+
+<a href="{{ path('concept_home') }}">
+			Retour page d'accueil
+		</a>
+
+
+{% endblock %}

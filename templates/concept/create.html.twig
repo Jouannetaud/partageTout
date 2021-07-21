@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Créer un concept !</h1>
+
+
+	{{ form_start(form) }}
+
+	{{ form_widget(form) }}
+
+
+	<input type="submit" value="créer">
+	{{ form_end(form) }}
+
+{% endblock %}
