@@ -9,6 +9,15 @@
 <p>{{ concept.description }}</p>
 
 <a href="{{ path('concept_edit',{id: concept.id}) }}">Editer un concept</a>
+<a href="#" onclick=" event.preventDefault; confirm('confirmer la suppression') && 
+document.getElementById('js_delete-form').submit();">supprimer</a>
+
+<form id="js_delete-form" action="{{path('concept_delete',{id: concept.id})}}" method="" style= "display:none;">
+<input type="hidden" name="_method" value="DELETE">
+
+<input type="submit" value="supprimer">
+</form>
+
 
 
 

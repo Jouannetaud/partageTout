@@ -16,6 +16,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+
 class ConceptController extends AbstractController
 {
     /**
@@ -59,7 +61,7 @@ class ConceptController extends AbstractController
         $concept = new Concept;
 
        $form = $this->createFormBuilder($concept)
-       ->add('title',TextType::class)
+       ->add('title',TypeTextType::class)
         ->add('description',TextareaType::class)
        
         ->getForm();
@@ -86,11 +88,12 @@ class ConceptController extends AbstractController
     }
 
     /**
-     * @Route("/concept/edit/{id<[0-9]+>}", name="concept_edit",methods={"GET","POST"})
+     * @Route("/concept/edit/{id<[0-9]+>}", name="concept_edit",methods={"GET","PUT"})
      */
     public function edit(Concept $concept,Request $request,EntityManagerInterface $em): Response
     {
         $form = $this->createFormBuilder($concept)
+        ->setMethod('PUT')
         ->add('title',TypeTextType::class)
         ->add('description',TextareaType::class)
        
@@ -113,5 +116,18 @@ class ConceptController extends AbstractController
             'concept' => $concept,
            'form' => $form->createView(),
         ]);   
+    }
+
+
+      /**
+     * @Route("/concept/delete/{id<[0-9]+>}", name="concept_delete",methods={"GET"})
+     */
+    public function delete(Concept $concept,EntityManagerInterface $em): Response
+    {
+        
+        $em->remove($concept);
+        $em->flush();
+
+        return $this->redirectToRoute('concept_home');  
     }
 }
