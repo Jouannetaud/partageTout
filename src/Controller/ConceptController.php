@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Concept;
 use App\Repository\ConceptRepository;
+use Doctrine\DBAL\Types\TextType;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,8 +59,8 @@ class ConceptController extends AbstractController
         $concept = new Concept;
 
        $form = $this->createFormBuilder($concept)
-        ->add('title', null,['attr' => ['autofocus' => true]])
-        ->add('description',null,['attr' => ['row' => 10, 'cols' => 50]])
+       ->add('title',TextType::class)
+        ->add('description',TextareaType::class)
        
         ->getForm();
 
@@ -76,11 +78,40 @@ class ConceptController extends AbstractController
 
 
         return $this->render('concept/create.html.twig', [
+            'concept' => $concept,
            'form' => $form->createView(),
            
 
         ]);
     }
 
- 
+    /**
+     * @Route("/concept/edit/{id<[0-9]+>}", name="concept_edit",methods={"GET","POST"})
+     */
+    public function edit(Concept $concept,Request $request,EntityManagerInterface $em): Response
+    {
+        $form = $this->createFormBuilder($concept)
+        ->add('title',TypeTextType::class)
+        ->add('description',TextareaType::class)
+       
+        ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+           
+            
+            $em->persist($concept);
+            $em->flush();
+
+            return $this->redirectToRoute('concept_home', ['id' => $concept->getId()]);    
+
+        
+        }
+
+        return $this->render('concept/create.html.twig', [
+            'concept' => $concept,
+           'form' => $form->createView(),
+        ]);   
+    }
 }

@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}  {% endblock %}
+
 {% block body %}
 	<h1>Créer un concept !</h1>
 
@@ -9,7 +11,7 @@
 	{{ form_widget(form) }}
 
 
-	<input type="submit" value="créer">
+	<input type="submit" value="sauvegarder">
 	{{ form_end(form) }}
 
 {% endblock %}

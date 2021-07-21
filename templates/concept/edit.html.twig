@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'edit concept #' ~ concept.id %}  {% endblock %}
+
+{% block body %}
+	<h1>Editer un concept !</h1>
+
+
+	{{ form_start(form) }}
+
+	{{ form_widget(form) }}
+
+
+	<input type="submit" value="créer">
+	{{ form_end(form) }}
+
+{% endblock %}

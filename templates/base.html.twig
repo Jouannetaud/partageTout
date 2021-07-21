@@ -10,10 +10,18 @@
         {% endblock %}
 
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+            
         {% endblock %}
     </head>
     <body>
+
+    <nav>
+        <ul>
+            <li><a href="{{ path('concept_home') }}">Accueil</a></li>
+            <li><a href="{{ path('concept_create') }}">Nouveau concept</a></li>
+        </ul>
+    
+    </nav>
         {% block body %}{% endblock %}
     </body>
 </html>

@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} {{ concept.title }} {% endblock %}
 
 {% block body %}
 
@@ -7,9 +8,8 @@
 
 <p>{{ concept.description }}</p>
 
-<a href="{{ path('concept_home') }}">
-			Retour page d'accueil
-		</a>
+<a href="{{ path('concept_edit',{id: concept.id}) }}">Editer un concept</a>
+
 
 
 {% endblock %}
