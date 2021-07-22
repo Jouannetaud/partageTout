@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ConceptRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=ConceptRepository::class)
+ * @Vich\Uploadable
  */
 class Concept
 {
@@ -26,7 +29,13 @@ class Concept
      * @ORM\Column(type="text")
      */
     private $description;
-
+       /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="concept_image", fileNameProperty="imageName")
+     * 
+     * @var File|null
+     */
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -53,6 +62,8 @@ class Concept
     {
         return $this->description;
     }
+
+    
 
     public function setDescription(string $description): self
     {
