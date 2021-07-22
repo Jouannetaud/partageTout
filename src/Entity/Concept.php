@@ -4,8 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ConceptRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Mapping\Annotation as vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ConceptRepository::class)
@@ -36,11 +36,16 @@ class Concept
      * 
      * @var File|null
      */
+    private $imageFile;
+    
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageName;
 
+   
+
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -62,8 +67,21 @@ class Concept
     {
         return $this->description;
     }
+  
+    /**
+     *
+     * @param File|UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
 
-    
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
 
     public function setDescription(string $description): self
     {
@@ -83,4 +101,9 @@ class Concept
 
         return $this;
     }
+
+  
+
+  
+
 }
