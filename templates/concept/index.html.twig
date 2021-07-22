@@ -5,25 +5,25 @@
 {% block body %}
 
 	
-		<h1>Liste des concepts</h1>
+	<h1>Liste des concepts</h1>
 
+		<div class="row mb-5>
+
+			{% for concept in concepts %}
+			
+					<article class="col-md-4">
+					<img src="{{ vich_uploader_asset(concept)| imagine_filter('image_small') }}" alt="{{ concept.title }}">
+					<h2><a href="{{ path('concept_show',{id: concept.id}) }}">{{ concept.title }}</a></h2>
+					<p>
+						{{ concept.description }}
+					</p>
+					
+					</article>
+				
+		
+			{% endfor %}
 		
 
+		</div>
 
-		{% for concept in concepts %}
-			<article>
-				<h2><a href="{{ path('concept_show',{id: concept.id}) }}">{{ concept.title }}</a></h2>
-				<p>
-					{{ concept.description }}
-				</p>
-				
-			</article>
-
-		{% else %}
-
-			<p>désole il y a aucun concept !</p>
-
-		{% endfor %}
-
-
-	{% endblock %}
+{% endblock %}

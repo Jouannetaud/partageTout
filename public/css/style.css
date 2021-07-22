@@ -2,14 +2,29 @@ html,body{
 
     font-family: 'Otomanopee One', sans-serif;
 }
-     .alert{
-         padding: 10px;
-         color: white;
-         text-align: center;
-         margin: 0;
-         border: none;
-     }
 
-     .alert-succes{
-         background-color:green;
-     }
+.alert{
+    padding: 10px;
+    color: white;
+    text-align: center;
+    margin: 0;
+    border: none;
+}
+
+.alert-succes{
+    background-color:green;
+}
+
+.vich-image .form-check {
+    margin-top: 20px;
+    
+}
+
+img{
+    margin-bottom: 30;
+    border-radius: 15px;
+    box-shadow: 10px 5px 5px lightgrey;
+}
+h1{
+    margin: 50px;
+}

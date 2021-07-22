@@ -17,11 +17,12 @@ class ConceptType extends AbstractType
         ->add('imageFile', VichImageType::class,[
              
             'required' => false,
-            'allow_delete' => false,
+            'allow_delete' => true,
             'delete_label' => '',
             'download_label' => '',
             'download_uri' => true,
-            'image_uri' => true,     
+            'image_uri' => true,
+            'imagine_pattern' => 'image_medium',     
             
         ])
             ->add('title')
