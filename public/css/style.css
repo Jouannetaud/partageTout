@@ -1,0 +1,15 @@
+html,body{
+
+    font-family: 'Otomanopee One', sans-serif;
+}
+     .alert{
+         padding: 10px;
+         color: white;
+         text-align: center;
+         margin: 0;
+         border: none;
+     }
+
+     .alert-succes{
+         background-color:green;
+     }
