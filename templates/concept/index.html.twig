@@ -12,7 +12,8 @@
 			{% for concept in concepts %}
 			
 					<article class="col-md-4">
-					<img src="{{ vich_uploader_asset(concept)| imagine_filter('image_small') }}" alt="{{ concept.title }}">
+					<img src="{{ vich_uploader_asset(concept)| imagine_filter('image_small') }}" 
+					alt="{{ concept.title }}" class= "w-100">
 					<h2><a href="{{ path('concept_show',{id: concept.id}) }}">{{ concept.title }}</a></h2>
 					<p>
 						{{ concept.description }}

@@ -28,3 +28,14 @@ img{
 h1{
     margin: 50px;
 }
+
+article{
+
+    display: inline-block;
+    justify-content: space-around;
+    margin-bottom: 30;
+    box-shadow: 10px 5px 5px lightgrey;
+    margin-top: 50px;
+
+    
+}
