@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Concept;
+use App\Form\ConceptType;
 use App\Repository\ConceptRepository;
 use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\EntityManager;
@@ -60,11 +61,9 @@ class ConceptController extends AbstractController
     {
         $concept = new Concept;
 
-       $form = $this->createFormBuilder($concept)
-       ->add('title',TypeTextType::class)
-        ->add('description',TextareaType::class)
+       $form = $this->createForm(ConceptType::class, $concept);
        
-        ->getForm();
+        
 
         $form->handleRequest($request);
 
@@ -73,6 +72,8 @@ class ConceptController extends AbstractController
             
             $em->persist($concept);
             $em->flush();
+
+            $this->addFlash('succes','création de concept réussi');
 
             return $this->redirectToRoute('concept_show', ['id' => $concept->getId()]);
 
@@ -88,17 +89,13 @@ class ConceptController extends AbstractController
     }
 
     /**
-     * @Route("/concept/edit/{id<[0-9]+>}", name="concept_edit",methods={"GET","PUT"})
+     * @Route("/concept/edit/{id<[0-9]+>}", name="concept_edit",methods={"POST","PUT","GET"})
      */
     public function edit(Concept $concept,Request $request,EntityManagerInterface $em): Response
     {
-        $form = $this->createFormBuilder($concept)
-        ->setMethod('PUT')
-        ->add('title',TypeTextType::class)
-        ->add('description',TextareaType::class)
-       
-        ->getForm();
-
+        $form = $this->createForm(ConceptType::class,$concept);
+        
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -107,12 +104,14 @@ class ConceptController extends AbstractController
             $em->persist($concept);
             $em->flush();
 
+            $this->addFlash('succes','modification de concept enregistré');
+
             return $this->redirectToRoute('concept_home', ['id' => $concept->getId()]);    
 
         
         }
 
-        return $this->render('concept/create.html.twig', [
+        return $this->render('concept/edit.html.twig', [
             'concept' => $concept,
            'form' => $form->createView(),
         ]);   
@@ -127,6 +126,8 @@ class ConceptController extends AbstractController
         
         $em->remove($concept);
         $em->flush();
+
+        $this->addFlash('succes','suppresion de concept réussi');
 
         return $this->redirectToRoute('concept_home');  
     }
