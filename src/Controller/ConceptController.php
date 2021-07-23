@@ -89,7 +89,7 @@ class ConceptController extends AbstractController
     }
 
     /**
-     * @Route("/concept/edit/{id<[0-9]+>}", name="concept_edit",methods={"POST","PUT","GET"})
+     * @Route("/concept/edit/{id<[0-9]+>}", name="concept_edit",methods={"POST","GET"})
      */
     public function edit(Concept $concept,Request $request,EntityManagerInterface $em): Response
     {
